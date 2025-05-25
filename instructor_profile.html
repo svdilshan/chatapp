@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Profile - FuturePath</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Google Fonts (Roboto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">FuturePath</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_profile.html">Profile</a> <!-- Generic Profile Link -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container content-section profile-container">
+        <h1 class="my-4 text-center">Instructor Profile</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div class="profile-picture-placeholder">
+                            <span>Profile Picture Placeholder</span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h3 id="instructorName">Dr. Jane Smith</h3>
+                        <p class="text-muted" id="instructorTitle">Senior Career Counselor, Engineering & Technology</p>
+                        <p><strong>Years of Experience:</strong> <span id="instructorExperience">12 Years</span></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h4>Areas of Expertise</h4>
+                <div id="instructorExpertise" class="mb-3">
+                    <span class="expertise-tag">Mechanical Engineering</span>
+                    <span class="expertise-tag">Software Development</span>
+                    <span class="expertise-tag">Career Planning</span>
+                    <span class="expertise-tag">Higher Education Guidance</span>
+                </div>
+
+                <h4>About Dr. Smith</h4>
+                <p id="instructorBio">
+                    Dr. Jane Smith is a dedicated career counselor with over a decade of experience in guiding students and professionals, particularly within the engineering and technology sectors. She is passionate about helping individuals identify their strengths and navigate their career paths effectively. Dr. Smith holds a PhD in Counseling Psychology and has worked with numerous educational institutions and corporate clients.
+                </p>
+
+                <h4>Contact Information</h4>
+                <p>
+                    <strong>Email:</strong> <a href="#" id="instructorContactBtn" class="btn btn-outline-primary btn-sm">Contact Dr. Smith</a>
+                    <small class="text-muted d-block">(For privacy, direct email is not displayed. Please use the contact button.)</small>
+                </p>
+
+                <!-- Optional: Edit button if this is the instructor's own view -->
+                <!-- <div class="text-end mt-3">
+                    <a href="#" class="btn btn-primary">Edit Profile</a>
+                </div> -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 FuturePath. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Placeholder for contact button functionality
+        document.getElementById('instructorContactBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Contact form or messaging system would be initiated here.');
+            // Example: window.location.href = 'mailto:placeholder@example.com?subject=Inquiry';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat & Messaging - FuturePath</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons (optional, but good for chat UI) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Chat Specific Styles -->
+    <link rel="stylesheet" href="css/chat_styles.css">
+</head>
+<body class="chat-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">FuturePath</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_profile.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Chat Area -->
+    <div class="container-fluid chat-container">
+        <div class="row chat-row">
+            <!-- Left Column: Chat List / Contacts -->
+            <div class="col-md-4 chat-list-column">
+                <div class="chat-list-search">
+                    <input type="text" class="form-control" placeholder="Search or start new chat...">
+                </div>
+                <div class="list-group chat-list list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Dr. Jane Smith</h6>
+                            <small class="text-muted">10:30 AM</small>
+                        </div>
+                        <p class="mb-1 text-muted small">Okay, sounds good. Let's discuss it.</p>
+                        <span class="badge bg-primary rounded-pill float-end">2</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Career Guidance Group</h6>
+                            <small class="text-muted">Yesterday</small>
+                        </div>
+                        <p class="mb-1 text-muted small">UserX: Don't forget the meeting tomorrow!</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">John Doe (Student)</h6>
+                            <small class="text-muted">Mon</small>
+                        </div>
+                        <p class="mb-1 text-muted small">Thanks for the help!</p>
+                    </a>
+                    <!-- Add more placeholder contacts -->
+                     <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Support Team</h6>
+                            <small class="text-muted">Fri</small>
+                        </div>
+                        <p class="mb-1 text-muted small">We've resolved your query.</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column: Main Chat Area -->
+            <div class="col-md-8 chat-area-column">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    <div>
+                        <span class="user-name">Dr. Jane Smith</span><br>
+                        <span class="user-status">Online</span>
+                    </div>
+                    <div class="header-icons">
+                        <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-phone"></i></button>
+                        <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-video"></i></button>
+                    </div>
+                </div>
+
+                <!-- Message Display Area -->
+                <div class="message-display-area" id="messageArea">
+                    <div class="message received">
+                        <div class="message-content">
+                            Hello! I saw your assessment results. Do you have any questions about the suggested career paths?
+                        </div>
+                        <div class="message-time">10:28 AM</div>
+                    </div>
+                    <div class="message sent">
+                        <div class="message-content">
+                            Hi Dr. Smith! Yes, I was wondering if you could elaborate on the "Engineering" path.
+                        </div>
+                        <div class="message-time">10:29 AM</div>
+                    </div>
+                    <div class="message received">
+                        <div class="message-content">
+                            Certainly! Engineering is a broad field. Based on your aptitude for problem-solving, fields like Software Engineering or Mechanical Engineering could be a good fit. We can explore specific roles and required skills.
+                        </div>
+                        <div class="message-time">10:30 AM</div>
+                    </div>
+                     <div class="message sent">
+                        <div class="message-content">
+                            Okay, sounds good. Let's discuss it.
+                        </div>
+                        <div class="message-time">10:30 AM</div>
+                    </div>
+                    <!-- More messages can be added here -->
+                </div>
+
+                <!-- Message Input Area -->
+                <div class="message-input-area">
+                    <div class="input-group">
+                        <button class="btn btn-outline-secondary" type="button" id="emojiBtn"><i class="fas fa-smile"></i></button>
+                        <button class="btn btn-outline-secondary" type="button" id="attachBtn"><i class="fas fa-paperclip"></i></button>
+                        <input type="text" class="form-control" id="messageInput" placeholder="Type your message here...">
+                        <button class="btn btn-primary" type="button" id="sendMessageBtn">Send <i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 FuturePath. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Custom JS for Chat Page -->
+    <script src="js/chat.js"></script>
+</body>
+</html>
