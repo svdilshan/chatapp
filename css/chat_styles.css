@@ -1,11 +1,11 @@
 /* css/chat_styles.css */
-/* Page-specific styles for chat */
+/* Page-specific styles for chat, aligned with the new design system */
 
 .chat-container {
-    margin-top: 10px; /* Reduced margin for more space */
+    margin-top: 10px;
     margin-bottom: 10px;
-    height: calc(100vh - 125px); /* Adjusted for navbar (56px) + footer (approx 50px) + margins */
-    overflow: hidden; /* Prevent body scroll, handle scrolling within panes */
+    height: calc(100vh - 125px); /* Navbar + Footer + Margins */
+    overflow: hidden;
 }
 
 .chat-row {
@@ -13,17 +13,27 @@
 }
 
 .chat-list-column {
-    border-right: 1px solid #dee2e6;
+    border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-color: var(--primary-bg); /* Ensure theme background */
+    background-color: var(--container-bg); /* White background for chat list column */
 }
 
 .chat-list-search {
     padding: 10px;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--border-color);
 }
+.chat-list-search .form-control { /* Ensure search input matches theme */
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease-in-out; /* Added for focus consistency */
+}
+.chat-list-search .form-control:focus {
+    border-color: var(--primary-accent); /* Turquoise focus border */
+    box-shadow: 0 0 0 0.25rem rgba(64, 224, 208, 0.25); /* Turquoise focus shadow */
+    transform: scale(1.01);
+}
+
 
 .chat-list {
     overflow-y: auto;
@@ -34,21 +44,39 @@
     cursor: pointer;
     border-left: 0;
     border-right: 0;
-    border-top: 1px solid #efefef; /* Light separator */
+    border-top: 1px solid var(--border-color); /* Softer separator */
+    padding: 0.75rem 1rem; /* Adjust padding */
+    border-radius: 0; /* No individual radius for list items for flush look */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Added color and transform */
 }
 .chat-list .list-group-item:first-child {
     border-top: 0;
 }
-.chat-list .list-group-item:hover, .chat-list .list-group-item.active {
-    background-color: var(--container-bg); /* Light grey from custom.css */
+.chat-list .list-group-item:hover {
+    background-color: var(--primary-bg); /* Pastel blue hover */
+    transform: translateX(3px); /* Slight indent on hover */
 }
 .chat-list .list-group-item.active {
-    font-weight: bold;
-    color: var(--primary-accent-blue); /* Active chat item text color */
+    background-color: var(--primary-accent); /* Turquoise for active chat */
+    color: var(--text-color); /* Dark text on turquoise */
+    font-weight: 600; /* Poppins bold */
+    border-left: 4px solid var(--button-cta-primary); /* Royal blue accent for active */
+    padding-left: calc(1rem - 4px); /* Adjust padding to account for border */
 }
-.chat-list .badge {
+.chat-list .list-group-item.active .text-muted {
+    color: var(--text-color) !important; /* Ensure muted text is also readable */
+    opacity: 0.8;
+}
+
+.chat-list .badge { /* Unread message badge */
     font-size: 0.75em;
-    background-color: var(--primary-accent-blue); /* Theme color for badges */
+    background-color: var(--button-cta-primary); /* Royal Blue for badge */
+    color: var(--bs-white);
+    border-radius: var(--border-radius-sm);
+    transition: transform 0.2s ease;
+}
+.chat-list .list-group-item:hover .badge {
+    transform: scale(1.1); /* Make badge pop a bit on item hover */
 }
 
 
@@ -59,29 +87,33 @@
 }
 
 .chat-header {
-    padding: 10px 15px;
-    border-bottom: 1px solid #dee2e6;
+    padding: 0.75rem 1rem; /* Adjust padding */
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--container-bg); /* Theme consistent header */
+    background-color: var(--container-bg); /* White header */
 }
 .chat-header .user-name {
-    font-weight: bold;
+    font-weight: 600; /* Poppins bold */
     color: var(--text-color);
+    font-size: 1.1rem;
 }
 .chat-header .user-status {
-    font-size: 0.85em;
-    color: #6c757d;
+    font-size: 0.8em;
+    color: var(--bs-gray);
 }
 .chat-header .header-icons .btn {
     margin-left: 5px;
-    color: var(--primary-accent-blue); /* Icon button color */
-    border-color: var(--primary-accent-blue);
+    color: var(--button-cta-primary); /* Royal Blue for icons */
+    border-color: transparent; /* Minimalist icons */
+    padding: 0.25rem 0.5rem;
+    transition: all 0.2s ease-in-out; /* Ensure general btn transition applies */
 }
 .chat-header .header-icons .btn:hover {
-    background-color: var(--primary-accent-blue);
-    color: white;
+    background-color: var(--primary-bg); /* Pastel blue hover for icon buttons */
+    color: var(--button-cta-primary);
+    transform: scale(1.1); /* Inherited transform from .btn might be too much, fine-tune if needed */
 }
 
 
@@ -89,34 +121,47 @@
     flex-grow: 1;
     overflow-y: auto;
     padding: 20px;
-    background-color: #e9ecef; /* Slightly different background for message area */
+    background-color: var(--primary-bg); /* Pastel blue for message area background */
 }
 
 .message {
     margin-bottom: 15px;
-    max-width: 70%;
+    max-width: 75%; /* Slightly more width */
     display: flex;
     flex-direction: column;
+    opacity: 0; /* For message animation */
+    transform: translateY(10px); /* For message animation */
+    animation: fadeInMessage 0.3s ease-out forwards; /* Staggered animation can be done via JS if needed */
 }
+
+@keyframes fadeInMessage {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .message .message-content {
-    padding: 10px 15px;
-    border-radius: 15px;
+    padding: 0.6rem 1rem; /* Adjust padding */
+    border-radius: var(--border-radius); /* Consistent rounded corners */
     word-wrap: break-word;
+    line-height: 1.5; /* Message readability */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Subtle shadow for messages */
 }
 .message .message-time {
-    font-size: 0.75em;
-    color: #6c757d;
-    margin-top: 3px;
+    font-size: 0.7em; /* Smaller time text */
+    color: var(--bs-gray);
+    margin-top: 4px;
 }
 
 .message.sent {
     align-self: flex-end;
-    margin-left: auto; /* Pushes to the right */
+    margin-left: auto;
 }
 .message.sent .message-content {
-    background-color: var(--primary-accent-blue); /* Theme blue for sent messages */
-    color: white;
-    border-bottom-right-radius: 5px;
+    background-color: var(--button-cta-primary); /* Royal Blue for sent messages */
+    color: var(--bs-white);
+    border-bottom-right-radius: var(--border-radius-sm); /* Slightly different rounding for sent */
 }
 .message.sent .message-time {
     text-align: right;
@@ -125,13 +170,13 @@
 
 .message.received {
     align-self: flex-start;
-    margin-right: auto; /* Pushes to the left */
+    margin-right: auto;
 }
 .message.received .message-content {
-    background-color: var(--primary-bg); /* White for received messages */
-    color: var(--text-color); /* Ensure readable text */
-    border: 1px solid #dee2e6;
-    border-bottom-left-radius: 5px;
+    background-color: var(--container-bg); /* White for received messages for contrast */
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-bottom-left-radius: var(--border-radius-sm); /* Slightly different rounding for received */
 }
 .message.received .message-time {
     text-align: left;
@@ -139,40 +184,75 @@
 
 .message-input-area {
     padding: 10px 15px;
-    border-top: 1px solid #dee2e6;
-    background-color: var(--container-bg); /* Theme consistent input area */
+    border-top: 1px solid var(--border-color);
+    background-color: var(--container-bg); /* White input area */
 }
-.message-input-area .form-control:focus { /* Ensure input focus matches theme */
-    border-color: var(--primary-accent-blue);
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+.message-input-area .form-control { /* Input field within chat */
+    border-radius: var(--border-radius);
+    /* transition already in custom.css */
+}
+.message-input-area .form-control:focus {
+    border-color: var(--primary-accent); /* Turquoise focus */
+    box-shadow: 0 0 0 0.25rem rgba(64, 224, 208, 0.25); /* Turquoise focus shadow */
+    /* transform: scale(1.01); /* Inherited from custom.css */
+}
+.message-input-area .btn { /* Buttons in input area */
+    border-radius: var(--border-radius);
+    /* transition and hover effects inherited from custom.css */
+}
+.message-input-area .btn-primary { /* Send button */
+    background-color: var(--button-cta-primary);
+    border-color: var(--button-cta-primary);
+}
+.message-input-area .btn-primary:hover {
+    background-color: #0042a3; /* Darker Royal Blue from custom.css */
+    border-color: #003b90; /* Darker Royal Blue from custom.css */
+}
+.message-input-area .btn-outline-secondary { /* Emoji/Attach buttons */
+    color: var(--bs-gray);
+    border-color: var(--border-color);
+}
+.message-input-area .btn-outline-secondary:hover {
+    background-color: var(--primary-bg); /* Pastel blue hover */
+    color: var(--text-color);
 }
 
 
 /* Responsive adjustments */
 @media (max-width: 767.98px) {
     .chat-container {
-        height: auto; /* Allow natural height on small screens */
-        margin-top: 0; /* Reduce top margin */
+        height: calc(100vh - 56px); /* Adjust for only navbar on mobile if footer is hidden or relative */
+        margin-top: 0;
+        margin-bottom: 0;
     }
     .chat-list-column {
-        height: 250px; /* Reduced fixed height for list on mobile if stacked */
+        height: 200px; /* Shorter list on mobile */
         border-right: 0;
-        border-bottom: 1px solid #dee2e6;
+        border-bottom: 1px solid var(--border-color);
     }
     .chat-area-column {
-        height: calc(100vh - 280px); /* Example, adjust based on other elements like header, footer, chat-list */
+        height: calc(100% - 200px); /* Take remaining height after chat list */
     }
     .chat-row {
         flex-direction: column;
     }
     .message {
-        max-width: 90%; /* Allow messages to take more width on smaller screens */
+        max-width: 85%;
+    }
+    .message-input-area {
+        padding: 8px;
+    }
+    .message-input-area .form-control {
+        padding: 0.375rem 0.75rem; /* Default BS padding */
     }
 }
 
-/* Ensure footer in chat.html is not overly intrusive or overlapping */
-/* This might need adjustment based on final layout and viewport height */
-body.chat-page .footer { /* Add a class to body in chat.html if needed for specificity */
-    position: relative; /* Changed from fixed for chat page to avoid overlap issues if chat-container is not perfectly sized */
-    z-index: 10; /* Ensure it's above other elements if necessary, but relative should handle flow */
+body.chat-page .footer {
+    display: none; /* Typically hide footer on full-screen chat UIs on mobile */
+}
+@media (min-width: 768px) { /* Show footer on desktop if it was hidden */
+    body.chat-page .footer {
+        display: block; /* Or initial, flex, etc. depending on its default */
+         position: relative; /* Ensure it's part of flow on desktop */
+    }
 }
