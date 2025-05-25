@@ -1,0 +1,125 @@
+/* css/custom.css */
+
+/* --- Color Palette --- */
+:root {
+    --primary-bg: #FFFFFF;
+    --primary-accent-blue: #0d6efd;
+    --secondary-accent-green: #198754;
+    --text-color: #212529;
+    --container-bg: #f8f9fa; /* Light grey for form backgrounds, etc. */
+    --footer-bg: #343a40;
+    --light-text-color: #f8f9fa; /* For dark backgrounds like footer */
+}
+
+/* --- General Styles --- */
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Navbar --- */
+.navbar-light.bg-light { /* Targeting the specific Bootstrap classes used */
+    background-color: var(--primary-bg) !important; /* White background for navbar */
+    border-bottom: 1px solid #dee2e6; /* Subtle border */
+}
+
+.navbar-light .navbar-brand {
+    color: var(--primary-accent-blue); /* Blue brand name */
+    font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--text-color); /* Dark text for nav links for readability */
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--primary-accent-blue); /* Blue for active/hovered links */
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background-color: var(--primary-accent-blue);
+    border-color: var(--primary-accent-blue);
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7; /* Darker blue on hover */
+    border-color: #0a58ca;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-accent-green);
+    border-color: var(--secondary-accent-green);
+}
+
+.btn-secondary:hover {
+    background-color: #157347; /* Darker green on hover */
+    border-color: #146c43;
+}
+
+/* --- Links --- */
+a {
+    color: var(--primary-accent-blue);
+}
+
+a:hover {
+    color: #0b5ed7; /* Darker blue on hover */
+}
+
+/* --- Forms (login.html, register.html) --- */
+.login-form,
+.registration-form {
+    background-color: var(--container-bg); /* Light grey background for form containers */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: var(--primary-accent-blue);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Blue focus ring */
+}
+
+/* --- Hero Section (index.html) --- */
+.hero-section {
+    background-color: var(--container-bg); /* Light grey for hero section */
+    padding: 60px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    color: var(--primary-accent-blue); /* Blue headline */
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--footer-bg);
+    color: var(--light-text-color);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+
+.footer a {
+    color: var(--light-text-color);
+    text-decoration: underline;
+}
+
+.footer a:hover {
+    color: #ced4da; /* Lighter grey for hover on dark background */
+}
+
+/* --- Specific Page Adjustments --- */
+/* Ensure logo placeholder uses theme color */
+.logo-placeholder {
+    color: var(--primary-accent-blue);
+}
+
+/* Ensure main content area takes up remaining space */
+.content-section {
+    flex: 1;
+}
