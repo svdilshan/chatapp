@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // --- DOM Elements ---
+    const body = document.querySelector('body.chat-page'); // For mobile view switching
     const sendMessageBtn = document.getElementById('sendMessageBtn');
     const messageInput = document.getElementById('messageInput');
     const messageArea = document.getElementById('messageArea');
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const attachBtn = document.getElementById('attachBtn');
     const chatListItems = document.querySelectorAll('.chat-list .list-group-item');
     const chatHeaderUserName = document.querySelector('.chat-header .user-name');
+    const backToChatListBtn = document.getElementById('backToChatListBtn');
     // const chatHeaderUserStatus = document.querySelector('.chat-header .user-status'); // If dynamic status needed
 
     // --- Functions ---
@@ -95,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Chat list item click handling (conceptual)
+    // Chat list item click handling (conceptual & mobile view switch)
     if (chatListItems.length > 0 && chatHeaderUserName) {
         chatListItems.forEach(item => {
             item.addEventListener('click', function(e) {
@@ -106,23 +108,39 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.classList.add('active');
 
                 // Update chat header with the selected user's name
-                const userName = this.querySelector('h6').textContent;
-                chatHeaderUserName.textContent = userName;
+                const userNameElement = this.querySelector('h6'); // Target the h6 for name
+                const userName = userNameElement ? userNameElement.textContent.trim() : "Selected Chat"; 
+                
+                if (chatHeaderUserName.firstChild && chatHeaderUserName.firstChild.nodeType === Node.ELEMENT_NODE) {
+                    // If the first child is an icon, preserve it and update the text content next to it
+                    chatHeaderUserName.childNodes[1].nodeValue = ` ${userName}`; // Update text node
+                } else {
+                     chatHeaderUserName.textContent = userName; // Fallback if no icon
+                }
                 // chatHeaderUserStatus.textContent = "Online"; // Or fetch actual status
 
                 // Clear current messages and load new ones (conceptual)
                 if(messageArea) messageArea.innerHTML = `<div class="text-center text-muted p-3">Messages with ${userName} would load here.</div>`;
                 
-                Swal.fire({
-                    text: `Switched chat to ${userName}. Message history would load here.`,
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true
-                });
+                // Mobile Specific Action: Switch to conversation view
+                if (body) {
+                    body.classList.add('conversation-view-active');
+                }
 
+                // No SweetAlert for switching chat to avoid alert fatigue on mobile when just tapping to view.
+                // The visual switch is the primary feedback.
             });
+        });
+    }
+
+    // Handle Back Button Click/Tap (Mobile)
+    if (backToChatListBtn && body) {
+        backToChatListBtn.addEventListener('click', function() {
+            body.classList.remove('conversation-view-active');
+            // Optional: Clear active state from chat list items, or leave the last selected.
+            // For now, leaving it selected is fine.
+            // chatListItems.forEach(i => i.classList.remove('active'));
+            // chatHeaderUserName.textContent = "Chats"; // Reset header
         });
     }
 });

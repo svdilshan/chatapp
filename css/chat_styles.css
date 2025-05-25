@@ -4,7 +4,7 @@
 .chat-container {
     margin-top: 10px;
     margin-bottom: 10px;
-    height: calc(100vh - 125px); /* Navbar + Footer + Margins */
+    height: calc(100vh - 125px); /* Navbar + Footer + Margins for Desktop */
     overflow: hidden;
 }
 
@@ -18,6 +18,7 @@
     flex-direction: column;
     height: 100%;
     background-color: var(--container-bg); /* White background for chat list column */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* For smooth view switching */
 }
 
 .chat-list-search {
@@ -84,15 +85,20 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* For smooth view switching */
 }
 
 .chat-header {
     padding: 0.75rem 1rem; /* Adjust padding */
     border-bottom: 1px solid var(--border-color);
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; /* Original, adjust if back button pushes things too much */
     align-items: center;
     background-color: var(--container-bg); /* White header */
+}
+.chat-header > div:nth-child(2) { /* User name and status container */
+    flex-grow: 1; /* Allow this to take available space */
+    text-align: center; /* Center user name/status if desired, or keep default left */
 }
 .chat-header .user-name {
     font-weight: 600; /* Poppins bold */
@@ -102,6 +108,9 @@
 .chat-header .user-status {
     font-size: 0.8em;
     color: var(--bs-gray);
+}
+.chat-header .header-icons {
+    margin-left: auto; /* Push icons to the right */
 }
 .chat-header .header-icons .btn {
     margin-left: 5px;
@@ -113,7 +122,10 @@
 .chat-header .header-icons .btn:hover {
     background-color: var(--primary-bg); /* Pastel blue hover for icon buttons */
     color: var(--button-cta-primary);
-    transform: scale(1.1); /* Inherited transform from .btn might be too much, fine-tune if needed */
+    transform: scale(1.1); 
+}
+#backToChatListBtn { /* Initially hidden on desktop by d-md-none */
+    display: none; /* Ensure it's hidden by default for JS to show on mobile */
 }
 
 
@@ -189,16 +201,13 @@
 }
 .message-input-area .form-control { /* Input field within chat */
     border-radius: var(--border-radius);
-    /* transition already in custom.css */
 }
 .message-input-area .form-control:focus {
     border-color: var(--primary-accent); /* Turquoise focus */
     box-shadow: 0 0 0 0.25rem rgba(64, 224, 208, 0.25); /* Turquoise focus shadow */
-    /* transform: scale(1.01); /* Inherited from custom.css */
 }
 .message-input-area .btn { /* Buttons in input area */
     border-radius: var(--border-radius);
-    /* transition and hover effects inherited from custom.css */
 }
 .message-input-area .btn-primary { /* Send button */
     background-color: var(--button-cta-primary);
@@ -218,26 +227,52 @@
 }
 
 
-/* Responsive adjustments */
+/* Responsive adjustments & Mobile Two-View Logic */
 @media (max-width: 767.98px) {
     .chat-container {
-        height: calc(100vh - 56px); /* Adjust for only navbar on mobile if footer is hidden or relative */
+        height: calc(100vh - 56px); /* Navbar height (assuming it's visible) */
         margin-top: 0;
         margin-bottom: 0;
-    }
-    .chat-list-column {
-        height: 200px; /* Shorter list on mobile */
-        border-right: 0;
-        border-bottom: 1px solid var(--border-color);
-    }
-    .chat-area-column {
-        height: calc(100% - 200px); /* Take remaining height after chat list */
+        overflow: hidden; /* Prevent scrolling of the container itself */
     }
     .chat-row {
-        flex-direction: column;
+        flex-direction: row; /* Keep as row to allow horizontal view switching */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        width: 200%; /* Double width to contain both views */
+        transform: translateX(0); /* Default to show chat list */
+        transition: transform 0.3s ease-in-out;
     }
-    .message {
-        max-width: 85%;
+
+    /* Both columns take full width of their part of the double-width row */
+    .chat-list-column,
+    .chat-area-column {
+        width: 50%; /* Each column is half of the .chat-row's 200% width */
+        height: 100%; /* Full height of the chat container */
+        display: flex; /* Keep them as flex columns */
+        flex-direction: column;
+        border-right: none; /* Remove border in mobile view */
+    }
+    
+    /* Default: Show chat list, hide conversation area (by moving it out of view) */
+    /* This is handled by the .chat-row transform: translateX(0) */
+    
+    /* Active Conversation View (Mobile) */
+    body.chat-page.conversation-view-active .chat-row {
+        transform: translateX(-50%); /* Slide to show chat area */
+    }
+
+    body.chat-page.conversation-view-active #backToChatListBtn {
+        display: inline-block; /* Show back button */
+    }
+    
+    /* Ensure the individual scrolling areas work correctly */
+    .chat-list, .message-display-area {
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+    .message { /* Adjust message width for smaller screens if needed */
+        max-width: 90%;
     }
     .message-input-area {
         padding: 8px;
@@ -254,5 +289,21 @@ body.chat-page .footer {
     body.chat-page .footer {
         display: block; /* Or initial, flex, etc. depending on its default */
          position: relative; /* Ensure it's part of flow on desktop */
+    }
+    /* Ensure desktop view is not affected by mobile translateX logic */
+    .chat-row {
+        width: 100%;
+        transform: none !important;
+    }
+    .chat-list-column {
+        width: auto; /* Let Bootstrap col-md-4 handle it */
+        /* display: flex !important; /* Ensure it's visible */
+    }
+    .chat-area-column {
+        width: auto; /* Let Bootstrap col-md-8 handle it */
+        /* display: flex !important; /* Ensure it's visible */
+    }
+    #backToChatListBtn {
+        display: none !important; /* Force hide on desktop via CSS, d-md-none also helps */
     }
 }
