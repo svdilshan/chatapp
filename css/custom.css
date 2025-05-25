@@ -1,0 +1,366 @@
+/* css/custom.css */
+
+/* --- Color Palette --- */
+:root {
+    --primary-bg: #FFFFFF;
+    --primary-accent-blue: #0d6efd;
+    --secondary-accent-green: #198754;
+    --text-color: #212529;
+    --container-bg: #f8f9fa; /* Light grey for form backgrounds, etc. */
+    --footer-bg: #343a40;
+    --light-text-color: #f8f9fa; /* For dark backgrounds like footer */
+    --border-color: #dee2e6; /* Standard border color */
+}
+
+/* --- General Styles --- */
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif; /* Added a common sans-serif font */
+}
+
+/* --- Navbar --- */
+.navbar-light.bg-light {
+    background-color: var(--primary-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-light .navbar-brand {
+    color: var(--primary-accent-blue);
+    font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--text-color);
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--primary-accent-blue);
+}
+
+/* --- Buttons --- */
+.btn { /* General button styling for border radius */
+    border-radius: 0.25rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-accent-blue);
+    border-color: var(--primary-accent-blue);
+    color: var(--primary-bg); /* Ensure text is light on primary buttons */
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    color: var(--primary-bg);
+}
+
+.btn-secondary { /* This is Bootstrap's gray, let's make our green the default secondary for this app */
+    background-color: var(--secondary-accent-green);
+    border-color: var(--secondary-accent-green);
+    color: var(--primary-bg); /* Ensure text is light on secondary buttons */
+}
+
+.btn-secondary:hover {
+    background-color: #157347;
+    border-color: #146c43;
+    color: var(--primary-bg);
+}
+
+.btn-success { /* Keep Bootstrap's success green as is, or map to our secondary-accent-green */
+    background-color: var(--secondary-accent-green);
+    border-color: var(--secondary-accent-green);
+}
+.btn-success:hover{
+    background-color: #157347;
+    border-color: #146c43;
+}
+
+
+.btn-info { /* Custom info color, e.g. a lighter blue */
+    background-color: #0dcaf0; /* Bootstrap info color */
+    border-color: #0dcaf0;
+    color: var(--text-color);
+}
+.btn-info:hover {
+    background-color: #0aa3c2;
+    border-color: #0aa3c2;
+}
+
+
+.btn-outline-primary {
+    color: var(--primary-accent-blue);
+    border-color: var(--primary-accent-blue);
+}
+.btn-outline-primary:hover {
+    background-color: var(--primary-accent-blue);
+    color: var(--primary-bg);
+}
+
+.btn-outline-secondary { /* For this app, secondary is green */
+    color: var(--secondary-accent-green);
+    border-color: var(--secondary-accent-green);
+}
+.btn-outline-secondary:hover {
+    background-color: var(--secondary-accent-green);
+    color: var(--primary-bg);
+}
+
+
+/* --- Links --- */
+a {
+    color: var(--primary-accent-blue);
+    text-decoration: none; /* Remove default underline */
+}
+
+a:hover {
+    color: #0b5ed7;
+    text-decoration: underline; /* Underline on hover for clarity */
+}
+
+/* --- Forms (login.html, register.html) --- */
+.login-form,
+.registration-form {
+    background-color: var(--container-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: var(--primary-accent-blue);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-select:focus { /* Ensure select also gets theme focus */
+    border-color: var(--primary-accent-blue);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+
+/* --- Cards --- */
+.card {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.card-header {
+    background-color: var(--container-bg);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+    color: var(--primary-accent-blue); /* Header text in blue */
+}
+
+
+/* --- Hero Section (index.html) --- */
+.hero-section {
+    background-color: var(--container-bg);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    color: var(--primary-accent-blue);
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--footer-bg);
+    color: var(--light-text-color);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* Pushes footer to the bottom */
+    border-top: 1px solid #495057; /* Slightly lighter border for dark footer */
+}
+
+.footer a {
+    color: var(--light-text-color);
+    text-decoration: underline;
+}
+
+.footer a:hover {
+    color: #ced4da;
+}
+
+/* --- Specific Page Adjustments & Unique Elements --- */
+
+/* General Logo Placeholder */
+.logo-placeholder {
+    color: var(--primary-accent-blue);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* General Content Section */
+.content-section {
+    flex: 1;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* User Profile Page (`user_profile.html`) */
+.profile-section { /* This class was in user_profile.html */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#editProfileSection .card-header { /* Ensure edit section card header is also themed */
+    color: var(--secondary-accent-green);
+}
+
+/* MCQ Exam Page (`mcq_exam.html`) */
+.exam-container {
+    max-width: 800px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.question-header { /* Already styled in mcq_exam.html, can refine here if needed */
+    margin-bottom: 20px;
+}
+.answer-options .list-group-item {
+    cursor: pointer;
+    border: 1px solid var(--border-color); /* Standard border */
+    margin-bottom: 5px; /* Spacing between options */
+    border-radius: 0.25rem; /* Rounded corners for options */
+}
+.answer-options .list-group-item:hover {
+    background-color: var(--container-bg); /* Light hover */
+    border-left: 3px solid var(--secondary-accent-green); /* Green accent on hover */
+}
+.answer-options .list-group-item.active {
+    background-color: var(--primary-accent-blue);
+    border-color: var(--primary-accent-blue);
+    color: var(--primary-bg); /* Light text on active */
+    border-left: 3px solid var(--primary-accent-blue);
+}
+.navigation-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.progress-bar { /* Ensure progress bar uses theme color */
+    background-color: var(--primary-accent-blue);
+}
+#timer { /* Timer badge styling */
+    background-color: var(--secondary-accent-green);
+    color: var(--primary-bg);
+}
+
+
+/* Results Page (`results_page.html`) */
+.results-container {
+    max-width: 800px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.suggested-path {
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+.suggested-path h4 {
+    color: var(--primary-accent-blue);
+}
+.detailed-report-link a { /* Link for detailed report */
+    font-weight: bold;
+}
+
+
+/* Instructor Profile & Assigned View (`instructor_profile.html`, `assigned_instructor_view.html`) */
+.profile-container, .instructor-view-container { /* Common container for these pages */
+    max-width: 800px;
+    margin: 20px auto; /* Center and add margin */
+}
+.profile-picture-placeholder, .profile-picture-placeholder-sm {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc; /* Neutral placeholder */
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    border: 3px solid var(--border-color);
+}
+.profile-picture-placeholder-sm {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px; /* From assigned_instructor_view.html */
+    float: left;
+}
+.expertise-tag {
+    display: inline-block;
+    background-color: var(--secondary-accent-green);
+    color: var(--primary-bg); /* White text on green tags */
+    padding: 0.3em 0.6em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+}
+#instructorContactBtn { /* Specific button on instructor profile */
+    margin-top: 5px; /* Add some space */
+}
+.alert-info { /* Theming for "no instructor assigned" */
+    background-color: #cfe2ff; /* Lighter blue for info alert */
+    border-color: #b6d4fe;
+    color: #084298;
+}
+.alert-info .alert-heading {
+    color: #084298;
+}
+.alert-info a.btn-info { /* Ensure button inside alert matches */
+    background-color: #084298; /* Darker blue for contrast */
+    border-color: #084298;
+    color: var(--primary-bg);
+}
+.alert-info a.btn-outline-info {
+    color: #084298;
+    border-color: #084298;
+}
+.alert-info a.btn-outline-info:hover {
+    background-color: #084298;
+    color: var(--primary-bg);
+}
+
+
+/* --- Utility Classes --- */
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+/* --- Responsive Adjustments for General Layout --- */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem; /* Slightly smaller headline on mobile */
+    }
+    .hero-section p {
+        font-size: 1rem;
+    }
+    .login-form, .registration-form {
+        padding: 20px; /* Less padding on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.25rem; /* Adjust brand size on very small screens */
+    }
+    .footer {
+        padding: 15px 0;
+    }
+}
+
+/* Add Google Font Link in HTML or here if strictly CSS */
+/* For this project, assume it's added in HTML <head> for Roboto:
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+*/
