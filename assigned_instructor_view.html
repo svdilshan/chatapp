@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Assigned Instructor - FuturePath</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">FuturePath</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_profile.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container content-section instructor-view-container">
+        <h1 class="my-4 text-center">Your Assigned Instructor</h1>
+
+        <!-- Case 1: Instructor Assigned -->
+        <div class="card" id="instructorAssignedCard">
+            <div class="card-body">
+                <div class="clearfix"> <!-- To contain the floated profile picture -->
+                    <div class="profile-picture-placeholder-sm">
+                        <i class="fas fa-user-tie fa-2x text-light"></i>
+                    </div>
+                    <h4 class="card-title" id="assignedInstructorName"><i class="fas fa-chalkboard-teacher me-2 text-primary"></i>Dr. Jane Smith</h4>
+                    <p class="card-text text-muted" id="assignedInstructorSpecialization"><i class="fas fa-atom me-2 text-muted"></i>Specialization: Engineering & Technology</p>
+                </div>
+                <hr>
+                <h5><i class="fas fa-comment-dots me-2 text-info"></i>Welcome Message</h5>
+                <p id="instructorWelcomeMessage">
+                    "Hello! I'm Dr. Smith, and I'm here to help you explore your career options in Engineering and Technology. Feel free to reach out if you have any questions or need guidance."
+                </p>
+                <div class="mt-4">
+                    <a href="instructor_profile.html" class="btn btn-primary me-2"><i class="fas fa-id-card me-2"></i>View Full Profile</a>
+                    <a href="chat.html" class="btn btn-success"><i class="fas fa-comments me-2"></i>Send Message</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case 2: No Instructor Assigned (Initially Hidden) -->
+        <div class="alert alert-info mt-4" role="alert" id="noInstructorCard" style="display: none;">
+            <h4 class="alert-heading"><i class="fas fa-info-circle me-2"></i>No Instructor Assigned Yet</h4>
+            <p>You have not been assigned an instructor yet. Please complete your career assessment or contact support for assistance.</p>
+            <hr>
+            <a href="mcq_exam.html" class="btn btn-info"><i class="fas fa-tasks me-2"></i>Take Assessment</a>
+            <a href="#" class="btn btn-outline-info ms-2"><i class="fas fa-headset me-2"></i>Contact Support</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 FuturePath. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Custom JS for Assigned Instructor View Page -->
+    <script src="js/assigned_instructor_view.js"></script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+/* css/custom.css */
+
+/* --- Base & Color Palette --- */
+:root {
+    /* Font */
+    --font-family-sans-serif: 'Poppins', sans-serif;
+
+    /* New Color Palette */
+    --primary-bg: #e7f5ff; /* Pastel Blue */
+    --primary-accent: #40E0D0; /* Turquoise */
+    --button-cta-primary: #0052cc; /* Royal Blue */
+    --button-cta-secondary: #28a745; /* Emerald Green */
+    --button-cta-tertiary: #FF7F50; /* Coral */
+    --highlight-primary: #DC3545; /* Warm Red (Bootstrap's danger) */
+    --highlight-secondary: #FFC107; /* Golden Saffron (Bootstrap's warning) */
+    --text-color: #212529; /* Dark Grey */
+    --text-light: #f8f9fa; /* Light Grey/Off-white for dark backgrounds */
+    --border-color: #ced4da; /* Softer Grey for borders */
+    --container-bg: #FFFFFF; /* White for card backgrounds, form backgrounds etc. for contrast with pastel body */
+    --footer-bg: #343a40; /* Keeping footer dark for now, can adjust */
+
+    /* Optional Cultural Accents (can be used for specific highlights/elements) */
+    --cultural-saffron: #FF9933;
+    --cultural-peacock-blue: #005073;
+    --cultural-earthy-green: #556B2F;
+
+    /* Standard Bootstrap colors (can be overridden or used as fallback) */
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-primary: var(--button-cta-primary); /* Mapping BS primary to our CTA primary */
+    --bs-secondary: var(--button-cta-secondary); /* Mapping BS secondary to our CTA secondary */
+    --bs-success: var(--button-cta-secondary); /* BS success to our CTA secondary (green) */
+    --bs-info: var(--primary-accent); /* BS info to our primary accent (turquoise) */
+    --bs-warning: var(--highlight-secondary); /* BS warning to our highlight saffron */
+    --bs-danger: var(--highlight-primary); /* BS danger to our highlight red */
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+
+    /* Rounded Corners */
+    --border-radius-sm: 0.25rem; /* Bootstrap's default sm */
+    --border-radius: 0.5rem; /* Larger, noticeable radius */
+    --border-radius-lg: 0.75rem; /* Bootstrap's default lg, or even larger */
+}
+
+/* --- General Styles --- */
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    font-family: var(--font-family-sans-serif);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6; /* Improved readability */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-sans-serif);
+    font-weight: 600; /* Poppins is lighter, so a bit more weight for headings */
+    color: var(--text-color); /* Ensure headings use the main text color by default */
+}
+
+/* --- Navbar --- */
+.navbar { /* General navbar styling */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for navbar bg if it changes */
+}
+.navbar-light.bg-light { /* Assuming this class is used, or adapt if it's navbar-dark etc. */
+    background-color: var(--container-bg) !important; /* White background for navbar */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-light .navbar-brand {
+    color: var(--button-cta-primary); /* Royal blue brand name */
+    font-weight: 700; /* Bold for brand */
+    font-size: 1.5rem;
+    transition: color 0.2s ease-in-out;
+}
+.navbar-light .navbar-brand:hover {
+    color: var(--cultural-peacock-blue); /* Example hover color */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--text-color);
+    font-weight: 500; /* Medium weight for nav links */
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--button-cta-primary); /* Royal blue for active/hovered links */
+    transform: scale(1.05); /* Slight zoom for nav links */
+}
+
+/* --- Buttons --- */
+.btn {
+    border-radius: var(--border-radius);
+    font-weight: 500; /* Medium weight for button text */
+    padding: 0.5rem 1rem; /* Adjust padding for a modern feel */
+    transition: all 0.2s ease-in-out; /* Smooth transitions for all button properties */
+}
+.btn:hover { /* General hover for all buttons, specific color changes below */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn-primary { /* Corresponds to button-cta-primary */
+    background-color: var(--button-cta-primary);
+    border-color: var(--button-cta-primary);
+    color: var(--bs-white);
+}
+.btn-primary:hover {
+    background-color: #0042a3; /* Darker Royal Blue */
+    border-color: #003b90;
+    color: var(--bs-white);
+}
+
+.btn-secondary { /* Corresponds to button-cta-secondary */
+    background-color: var(--button-cta-secondary);
+    border-color: var(--button-cta-secondary);
+    color: var(--bs-white);
+}
+.btn-secondary:hover {
+    background-color: #1e7e34; /* Darker Emerald Green */
+    border-color: #1c7430;
+    color: var(--bs-white);
+}
+
+.btn-success { /* Using BS mapping, which links to button-cta-secondary */
+    background-color: var(--bs-success);
+    border-color: var(--bs-success);
+    color: var(--bs-white);
+}
+.btn-success:hover { /* Darker Emerald Green */
+    background-color: #1e7e34;
+    border-color: #1c7430;
+    color: var(--bs-white);
+    /* transform & box-shadow inherited from .btn:hover */
+}
+
+
+.btn-tertiary { /* Custom class for Coral button */
+    background-color: var(--button-cta-tertiary);
+    border-color: var(--button-cta-tertiary);
+    color: var(--bs-white);
+}
+.btn-tertiary:hover {
+    background-color: #e66a3f; /* Darker Coral */
+    border-color: #d35f30;
+    color: var(--bs-white);
+}
+
+.btn-info { /* Using BS mapping, which links to primary-accent */
+    background-color: var(--bs-info);
+    border-color: var(--bs-info);
+    color: var(--text-color); /* Turquoise might need dark text */
+}
+.btn-info:hover {
+    background-color: #31c6b8; /* Darker Turquoise */
+    border-color: #2dbba8;
+    color: var(--text-color);
+    /* transform & box-shadow inherited from .btn:hover */
+}
+
+.btn-danger { /* Using BS mapping, which links to highlight-primary */
+    background-color: var(--bs-danger);
+    border-color: var(--bs-danger);
+    color: var(--bs-white);
+}
+.btn-danger:hover {
+    background-color: #b02a37; /* Darker Warm Red */
+    border-color: #a02530;
+    color: var(--bs-white);
+    /* transform & box-shadow inherited from .btn:hover */
+}
+
+.btn-warning { /* Using BS mapping, which links to highlight-secondary */
+    background-color: var(--bs-warning);
+    border-color: var(--bs-warning);
+    color: var(--text-color); /* Saffron might need dark text */
+}
+.btn-warning:hover {
+    background-color: #d9a406; /* Darker Golden Saffron */
+    border-color: #c79805;
+    color: var(--text-color);
+    /* transform & box-shadow inherited from .btn:hover */
+}
+
+
+/* Outline Buttons */
+.btn-outline-primary {
+    color: var(--button-cta-primary);
+    border-color: var(--button-cta-primary);
+}
+.btn-outline-primary:hover {
+    background-color: var(--button-cta-primary);
+    color: var(--bs-white);
+    /* transform & box-shadow inherited from .btn:hover */
+}
+
+.btn-outline-secondary {
+    color: var(--button-cta-secondary);
+    border-color: var(--button-cta-secondary);
+}
+.btn-outline-secondary:hover {
+    background-color: var(--button-cta-secondary);
+    color: var(--bs-white);
+    /* transform & box-shadow inherited from .btn:hover */
+}
+
+/* --- Links --- */
+a {
+    color: var(--button-cta-primary); /* Royal blue for links */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+a:hover {
+    color: #0042a3; /* Darker Royal Blue for link hover */
+    text-decoration: underline;
+}
+
+/* --- Forms --- */
+.form-control,
+.form-select {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem; /* Consistent padding */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-accent); /* Turquoise focus border */
+    box-shadow: 0 0 0 0.25rem rgba(64, 224, 208, 0.25); /* Turquoise focus shadow */
+    transform: scale(1.01); /* Slight scale on focus */
+}
+
+
+.login-form,
+.registration-form {
+    background-color: var(--container-bg); /* White for forms */
+    padding: 30px;
+    border-radius: var(--border-radius-lg); /* Larger radius for form containers */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.login-form:hover,
+.registration-form:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    transform: translateY(-3px); /* Slight lift on form hover */
+}
+
+
+/* --- Cards --- */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg); /* Larger radius for cards */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07); /* Subtle shadow */
+    background-color: var(--container-bg); /* White for cards */
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.card:hover { /* Subtle hover for cards */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px); /* Lift card slightly */
+    /* border-color: var(--primary-accent); /* Optional: if cards have borders and want to highlight */
+}
+
+.card-header {
+    background-color: transparent; /* Cleaner look, no separate bg for header */
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600; /* Poppins bold for card headers */
+    color: var(--button-cta-primary);
+    padding: 1rem 1.25rem;
+    border-top-left-radius: var(--border-radius-lg); /* Ensure header corners match card */
+    border-top-right-radius: var(--border-radius-lg);
+}
+
+/* --- Alerts --- */
+.alert {
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.alert:hover {
+    transform: scale(1.01) translateY(-1px); /* Slight zoom and lift on alert hover */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.alert-primary {
+    background-color: var(--primary-accent);
+    border-color: #31c6b8; /* Darker Turquoise border */
+    color: var(--text-color);
+}
+.alert-info {
+    background-color: var(--primary-accent);
+    border-color: #31c6b8; /* Darker Turquoise border */
+    color: var(--text-color);
+}
+.alert-info .alert-heading {
+    color: var(--text-color);
+}
+.alert-info a.btn-info {
+    background-color: var(--text-color);
+    border-color: var(--text-color);
+    color: var(--primary-accent);
+}
+.alert-info a.btn-outline-info {
+    color: var(--text-color);
+    border-color: var(--text-color);
+}
+.alert-info a.btn-outline-info:hover {
+    background-color: var(--text-color);
+    color: var(--primary-accent);
+}
+
+
+/* --- Hero Section (index.html) --- */
+.hero-section {
+    background-color: var(--container-bg); /* White, or a very light accent */
+    padding: 60px 15px; /* Standard padding */
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+.hero-section h1 {
+    color: var(--button-cta-primary);
+    font-weight: 700; /* Bold for main headline */
+    font-size: 2.8rem; /* Larger headline */
+}
+.hero-section p {
+    font-size: 1.1rem;
+    color: var(--bs-gray);
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--footer-bg); /* Dark footer */
+    color: var(--text-light);
+    padding: 30px 15px; /* More padding */
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid darken(var(--footer-bg), 5%);
+}
+.footer a {
+    color: var(--primary-accent);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+.footer a:hover {
+    color: var(--bs-white);
+    text-decoration: underline;
+}
+
+/* --- Specific Page Adjustments & Unique Elements --- */
+
+/* General Logo Placeholder */
+.logo-placeholder {
+    color: var(--button-cta-primary);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem; /* Slightly larger */
+    font-weight: 700; /* Bold */
+}
+
+/* General Content Section */
+.content-section, .chat-container, .profile-container, .exam-container, .results-container, .login-container, .registration-container {
+    opacity: 0; /* Start transparent for fade-in */
+    animation: fadeInContent 0.6s 0.1s ease-in-out forwards; /* Apply to content with slight delay */
+}
+
+/* User Profile Page (`user_profile.html`) */
+.profile-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#editProfileSection .card-header {
+    color: var(--button-cta-secondary); /* Green for edit section header */
+}
+
+/* MCQ Exam Page (`mcq_exam.html`) */
+.exam-container {
+    max-width: 800px;
+    margin: 30px auto; /* More margin */
+}
+.answer-options .list-group-item {
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    margin-bottom: 8px; /* Slightly more spacing */
+    border-radius: var(--border-radius); /* Consistent rounded corners */
+    transition: background-color 0.2s ease-in-out, border-left-color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Added transform */
+}
+.answer-options .list-group-item:hover {
+    background-color: var(--primary-bg);
+    border-left: 4px solid var(--primary-accent);
+    transform: translateX(5px); /* Slight move right on hover */
+}
+.answer-options .list-group-item.active {
+    background-color: var(--button-cta-primary);
+    border-color: var(--button-cta-primary);
+    color: var(--bs-white);
+    border-left: 4px solid #0042a3; /* Darker Royal Blue */
+    transform: scale(1.02); /* Slightly larger when active */
+}
+.progress-bar {
+    background-color: var(--button-cta-primary); /* Royal blue progress bar */
+    transition: width 0.5s ease-in-out; /* Smooth progress bar update */
+}
+#timer {
+    background-color: var(--button-cta-tertiary); /* Coral timer badge */
+    color: var(--bs-white);
+    padding: 0.5em 0.75em;
+    border-radius: var(--border-radius-sm);
+}
+
+
+/* Results Page (`results_page.html`) */
+.results-container {
+    max-width: 800px;
+    margin: 30px auto;
+}
+.suggested-path {
+    background-color: var(--container-bg); /* White */
+    padding: 25px; /* More padding */
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+    text-align: center; /* Center text for emphasis */
+    transform: scale(0.95); /* Start slightly smaller for animation */
+    opacity: 0;
+    animation: popInResultPath 0.5s 0.3s ease-out forwards;
+}
+@keyframes popInResultPath {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.suggested-path h4 {
+    color: var(--button-cta-primary);
+    margin-bottom: 15px;
+}
+.detailed-report-link a {
+    font-weight: 500; /* Medium weight */
+    color: var(--button-cta-secondary);
+    transition: letter-spacing 0.2s ease-out;
+}
+.detailed-report-link a:hover {
+    letter-spacing: 0.5px; /* Slight letter spacing increase on hover */
+}
+
+
+/* Instructor Profile & Assigned View */
+.profile-container, .instructor-view-container {
+    max-width: 800px;
+    margin: 30px auto;
+}
+.profile-picture-placeholder, .profile-picture-placeholder-sm {
+    width: 150px;
+    height: 150px;
+    background-color: var(--border-color); /* Softer placeholder color */
+    border-radius: 50%; /* Keep circular */
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--bs-gray);
+    border: 4px solid var(--bs-white); /* White border around pic */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-picture-placeholder:hover, .profile-picture-placeholder-sm:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.profile-picture-placeholder-sm {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    float: left; /* Retain float if layout depends on it */
+}
+.expertise-tag {
+    display: inline-block;
+    background-color: var(--primary-accent);
+    color: var(--text-color);
+    padding: 0.4em 0.8em; /* Slightly larger padding */
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.expertise-tag:hover {
+    background-color: darken(var(--primary-accent), 10%);
+    transform: scale(1.05);
+}
+
+/* --- Illustration & Mascot Placeholders --- */
+.hero-illustration-placeholder {
+    width: 100%; /* Take full width of its column */
+    max-width: 450px; /* Max width for larger screens */
+    height: 300px; 
+    background-color: #e0e0e0; 
+    margin: 20px auto; 
+    text-align: center; 
+    line-height: 300px; /* Vertically center text */
+    border-radius: var(--border-radius-lg); /* Consistent large radius */
+    color: #777; 
+    font-style: italic;
+    display: flex; /* For centering content if it's more than just text */
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeInIllustration 0.7s 0.4s ease-out forwards;
+}
+.feature-icon-placeholder {
+    width: 100px; /* Larger for feature icons */
+    height: 100px; 
+    background-color: var(--primary-accent); /* Turquoise background for feature icons */
+    border-radius: 50%; 
+    margin: 15px auto; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bs-white); /* White icon/text on turquoise */
+    font-size: 2rem; /* Larger icon size */
+    font-style: normal; /* Not italic for icons */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-icon-placeholder:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 4px 10px rgba(var(--primary-accent), 0.4); /* Needs RGB for rgba */
+}
+
+.results-illustration-placeholder {
+    width: 100%;
+    max-width: 350px;
+    height: 250px; 
+    background-color: #e0e0e0; 
+    margin: 20px auto; 
+    text-align: center; 
+    line-height: 250px; 
+    border-radius: var(--border-radius-lg); 
+    color: #777; 
+    font-style: italic;
+    opacity: 0;
+    animation: fadeInIllustration 0.7s 0.2s ease-out forwards;
+}
+.mascot-placeholder-mcq { /* For specific placement in MCQ exam */
+    width: 120px; 
+    height: 140px; 
+    background-color: #e0e0e0; 
+    border-radius: var(--border-radius); 
+    color: #777; 
+    font-style: italic;
+    text-align: center; 
+    padding: 10px; /* For text wrapping */
+    font-size: 0.8em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: fadeInMascot 0.5s 0.8s ease-out forwards;
+}
+.site-mascot-placeholder { /* For global, subtle mascot */
+    width: 80px; 
+    height: 100px; 
+    background-color: #e0e0e0; 
+    border-radius: var(--border-radius); 
+    color: #777; 
+    font-style: italic;
+    text-align: center; 
+    padding: 5px;
+    font-size: 0.7em;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 1000; /* Ensure it's above other content */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    opacity: 0;
+    animation: fadeInMascot 0.5s 1s ease-out forwards; /* Delay more for global mascot */
+    transition: transform 0.3s ease;
+}
+.site-mascot-placeholder:hover {
+    transform: scale(1.1) rotate(3deg);
+}
+
+/* --- Keyframes for Animations --- */
+@keyframes fadeInPage { /* Not used directly on body anymore */
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInIllustration {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInMascot {
+    from { opacity: 0; transform: scale(0.8) rotate(-10deg); }
+    to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+
+/* --- Utility Classes --- */
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+    .hero-section p {
+        font-size: 1rem;
+    }
+    .login-form, .registration-form {
+        padding: 25px;
+    }
+    h1, .h1 { font-size: calc(1.325rem + 0.9vw); } /* BS default responsive h1 */
+    h2, .h2 { font-size: calc(1.3rem + 0.6vw); }
+    h3, .h3 { font-size: calc(1.275rem + 0.3vw); }
+    .hero-illustration-placeholder {
+        height: 200px; /* Smaller on mobile */
+        line-height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    .footer {
+        padding: 20px 15px;
+    }
+     h1, .h1 { font-size: calc(1.3rem + 0.6vw); } /* Adjust for smaller screens */
+    .feature-icon-placeholder {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem;
+    }
+    .site-mascot-placeholder { /* Smaller and less intrusive on very small screens */
+        width: 60px;
+        height: 75px;
+        font-size: 0.6em;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+/* Ensure Poppins font is linked in HTML:
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+*/
+
+/* Static hex values for hover states for compatibility. */
+/* .btn-primary:hover already defined */
+/* .btn-secondary:hover already defined */
+/* .btn-success:hover already defined */
+/* .btn-tertiary:hover already defined */
+/* .btn-info:hover already defined */
+/* .btn-danger:hover already defined */
+/* .btn-warning:hover already defined */
+
+/* a:hover already defined */
+
+/* .alert-primary already defined */
+/* .alert-info already defined */
+/* .navbar-light .navbar-nav .nav-link:hover already defined */
+/* .card-header already defined */
+/* .hero-section h1 already defined */
+/* .logo-placeholder already defined */
+/* .answer-options .list-group-item:hover already defined */
+/* .answer-options .list-group-item.active already defined */
+/* .suggested-path h4 already defined */
+/* .detailed-report-link a already defined */
+/* .expertise-tag already defined */
+/* .footer a already defined */
+/* .footer a:hover already defined */
